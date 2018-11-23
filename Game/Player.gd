@@ -33,19 +33,17 @@ func _integrate_forces(state):
 	if Input.is_key_pressed(controls[up]):
 		set_applied_force(thrust.rotated(rotation))
 	else:
+		set_applied_force(Vector2())
 	
-		#Right
-		if Input.is_key_pressed(controls[right]):
-			rotation_dir += 1
-			set_applied_force(thrust.rotated(rotation))
-		else:
-			set_applied_force(Vector2())
+	#Right
+	if Input.is_key_pressed(controls[right]):
+		rotation_dir += 1
+		#set_applied_force(thrust.rotated(rotation))
+
+	#Left
+	if Input.is_key_pressed(controls[left]):
+		rotation_dir -= 1
+		#set_applied_force(thrust.rotated(rotation))
 	
-		#Left
-		if Input.is_key_pressed(controls[left]):
-			rotation_dir -= 1
-			set_applied_force(thrust.rotated(rotation))
-		else:
-			set_applied_force(Vector2())
 	
 	set_applied_torque(rotation_dir * torque); 

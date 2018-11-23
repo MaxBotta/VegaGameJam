@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 [node name="RigidBody2D" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 298.727, 203.965 )
 friction = 1.0
 bounce = 1.0
-torque = 10000
-engine_thrust = 200
+torque = 20000
+engine_thrust = 500
 left = "a"
 right = "d"
 up = "w"
@@ -20,6 +20,7 @@ up = "w"
 position = Vector2( 952.137, 387.173 )
 bounce = 1.0
 torque = 20000
+engine_thrust = 500
 left = "left"
 right = "right"
 up = "up"
