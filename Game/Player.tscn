@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
@@ -9,6 +9,15 @@
 [ext_resource path="res://assets/flame/flame03.png" type="Texture" id=7]
 [ext_resource path="res://assets/flame/flame04.png" type="Texture" id=8]
 [ext_resource path="res://assets/flame/flame06.png" type="Texture" id=9]
+[ext_resource path="res://assets/running/1.png" type="Texture" id=10]
+[ext_resource path="res://assets/running/2.png" type="Texture" id=11]
+[ext_resource path="res://assets/running/3.png" type="Texture" id=12]
+[ext_resource path="res://assets/running/4.png" type="Texture" id=13]
+[ext_resource path="res://assets/running/5.png" type="Texture" id=14]
+[ext_resource path="res://assets/running/6.png" type="Texture" id=15]
+[ext_resource path="res://assets/running/7.png" type="Texture" id=16]
+[ext_resource path="res://assets/running/8.png" type="Texture" id=17]
+[ext_resource path="res://assets/running/9.png" type="Texture" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -23,6 +32,16 @@ animations = [ {
 "name": "left-flame",
 "speed": 24.0
 } ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+_sections_unfolded = [ "Resource" ]
 
 [node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "player",
@@ -71,7 +90,7 @@ rotation = -3.14159
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 flame_left_on = false
 flame_right_on = false
 
@@ -82,7 +101,7 @@ scale = Vector2( 0.575147, 0.575147 )
 z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
-frame = 3
+frame = 4
 playing = true
 _sections_unfolded = [ "Pause", "Z Index" ]
 
@@ -93,8 +112,21 @@ scale = Vector2( 0.575147, 0.575147 )
 z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
+frame = 1
 playing = true
 _sections_unfolded = [ "Z Index" ]
+
+[node name="running_sprite" type="AnimatedSprite" parent="." index="3"]
+
+visible = false
+position = Vector2( -0.64399, 11.5905 )
+rotation = 3.14159
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 3 )
+animation = "default"
+frame = 1
+playing = true
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 
 [editable path="Area2D"]

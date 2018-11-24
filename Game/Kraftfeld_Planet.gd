@@ -35,7 +35,7 @@ func _physics_process(delta):
 		player.rotate(to_rotate)
 		var applied_force = player.get_applied_force()
 		velocity = (direction * gravity_force) + applied_force
-		print(velocity)
+		
 		player.set_applied_force(velocity)
 
 		

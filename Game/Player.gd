@@ -43,6 +43,7 @@ func _integrate_forces(state):
 		sprite.right_flame(true)
 		#var applied_force = self.get_applied_force()
 		set_applied_force(thrust.rotated(rotation) )
+		do_jetting()
 		#add_force(Vector2(0,0), thrust.rotated(rotation))
 	else:
 		sprite.left_flame(false)
@@ -73,9 +74,14 @@ func check_explosion(delta):
 		explosion_timer -= delta
 		
 	
+func do_running():
+	if (!Input.is_key_pressed(controls[up]) and !Input.is_key_pressed(controls[left]) and !Input.is_key_pressed(controls[right])):
+		$running_sprite.visible = true
+		$player_sprite.visible = false
 		
-		
-		
+func do_jetting():
+	$running_sprite.visible = false
+	$player_sprite.visible = true
 		
 		
 		
