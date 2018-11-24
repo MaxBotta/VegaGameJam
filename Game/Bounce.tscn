@@ -1,12 +1,44 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Bounce.gd" type="Script" id=1]
 [ext_resource path="res://assets/bounce.png" type="Texture" id=2]
+[ext_resource path="res://assets/explosion/1.png" type="Texture" id=3]
+[ext_resource path="res://assets/explosion/2.png" type="Texture" id=4]
+[ext_resource path="res://assets/explosion/3.png" type="Texture" id=5]
+[ext_resource path="res://assets/explosion/4.png" type="Texture" id=6]
+[ext_resource path="res://assets/explosion/5.png" type="Texture" id=7]
+[ext_resource path="res://assets/explosion/6.png" type="Texture" id=8]
+[ext_resource path="res://assets/explosion/7.png" type="Texture" id=9]
+[ext_resource path="res://assets/explosion/8.png" type="Texture" id=10]
+[ext_resource path="res://assets/explosion/9.png" type="Texture" id=11]
+[ext_resource path="res://assets/explosion/10.png" type="Texture" id=12]
+[ext_resource path="res://assets/explosion/11.png" type="Texture" id=13]
+[ext_resource path="res://assets/explosion/13.png" type="Texture" id=14]
+[ext_resource path="res://assets/explosion/12.png" type="Texture" id=15]
+[ext_resource path="res://assets/explosion/14.png" type="Texture" id=16]
+[ext_resource path="res://assets/explosion/15.png" type="Texture" id=17]
+[ext_resource path="res://assets/explosion/16.png" type="Texture" id=18]
+[ext_resource path="res://assets/explosion/17.png" type="Texture" id=19]
+[ext_resource path="res://assets/explosion/18.png" type="Texture" id=20]
+[ext_resource path="res://assets/explosion/19.png" type="Texture" id=21]
+[ext_resource path="res://assets/explosion/20.png" type="Texture" id=22]
+[ext_resource path="res://assets/explosion/21.png" type="Texture" id=23]
+[ext_resource path="res://assets/explosion/22.png" type="Texture" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 102.451
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "Explosion",
+"speed": 24.0
+} ]
+_sections_unfolded = [ "Resource" ]
 
 [node name="Area2D" type="Area2D"]
 
@@ -29,8 +61,17 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D" index="0"]
 
+visible = false
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Explosion" type="AnimatedSprite" parent="." index="1"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 2 )
+animation = "Explosion"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [connection signal="area_shape_exited" from="." to="." method="_on_Area2D_area_shape_exited"]

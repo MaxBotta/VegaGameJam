@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
@@ -9,6 +9,13 @@
 [ext_resource path="res://assets/flame/flame03.png" type="Texture" id=7]
 [ext_resource path="res://assets/flame/flame04.png" type="Texture" id=8]
 [ext_resource path="res://assets/flame/flame06.png" type="Texture" id=9]
+[ext_resource path="res://assets/cropped2/001.png" type="Texture" id=10]
+[ext_resource path="res://assets/cropped2/002.png" type="Texture" id=11]
+[ext_resource path="res://assets/cropped2/003.png" type="Texture" id=12]
+[ext_resource path="res://assets/cropped2/004.png" type="Texture" id=13]
+[ext_resource path="res://assets/cropped2/005.png" type="Texture" id=14]
+[ext_resource path="res://assets/cropped2/006.png" type="Texture" id=15]
+[ext_resource path="res://assets/cropped2/007.png" type="Texture" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -24,7 +31,17 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[node name="RigidBody2D" type="RigidBody2D" index="0"]
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "death",
+"speed": 16.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
 
 rotation = 3.14159
 input_pickable = false
@@ -36,7 +53,7 @@ friction = 0.0
 bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
-continuous_cd = 0
+continuous_cd = 2
 contacts_reported = 0
 contact_monitor = false
 sleeping = false
@@ -55,7 +72,7 @@ up = null
 energy = null
 bounce_on = false
 bounce_power = null
-cooldown_time = null
+cooldown_time = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -70,12 +87,11 @@ explosion_duration = 5.0
 
 [node name="player_sprite" type="Sprite" parent="." index="2"]
 
-editor/display_folded = true
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 flame_left_on = true
 flame_right_on = true
 
@@ -86,7 +102,7 @@ position = Vector2( -77.9772, 81.791 )
 scale = Vector2( 0.575147, 0.575147 )
 frames = SubResource( 2 )
 animation = "left-flame"
-frame = 5
+frame = 4
 playing = true
 _sections_unfolded = [ "Pause", "Visibility", "Z Index" ]
 
@@ -97,8 +113,21 @@ position = Vector2( 76.2599, 83.0961 )
 scale = Vector2( 0.575147, 0.575147 )
 frames = SubResource( 2 )
 animation = "left-flame"
+frame = 5
 playing = true
 _sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="death" type="AnimatedSprite" parent="." index="3"]
+
+visible = false
+rotation = -3.14159
+scale = Vector2( 0.65, 0.65 )
+frames = SubResource( 3 )
+animation = "death"
+frame = 6
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[connection signal="animation_finished" from="death" to="player_sprite" method="_on_death_animation_finished"]
 
 
 [editable path="Area2D"]

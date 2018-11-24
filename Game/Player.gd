@@ -17,6 +17,7 @@ var rotation_dir = 0
 var thrust = Vector2()
 var explosion_timer = 0
 var sprite
+var is_dead = false
 
 var controls = { 
 	up = KEY_UP, 
@@ -55,7 +56,6 @@ func _integrate_forces(state):
 		sprite.right_flame(true)
 		rotation_dir -= 1
 	
-	
 	set_applied_torque(rotation_dir * torque); 
 	
 func _process(delta):
@@ -70,8 +70,23 @@ func check_explosion(delta):
 	else:
 		bounce_on = false
 		explosion_timer -= delta
-		
+
+func get_random_number():
+    randomize()
+    return randi()%11
 	
+func death():
+	self.mode = 1
+	self.is_dead = true
+
+func respawn():
+	is_dead = false
+	self.visible = true
+	sprite.visible = true
+	self.mode = 0
+	self.position = Vector2(rand_range(1,1000), rand_range(1,1900))
+
+
 		
 		
 		
