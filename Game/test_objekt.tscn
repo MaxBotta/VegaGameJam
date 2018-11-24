@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends RigidBody2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+
+func get_forward_vector():
+	pass
+
+func _draw():
+	pass
+#	var baum = self.get_global_transform().orthonormalized()
+#	draw_line(Vector2(0,0), baum.x*1000, Color(0,255,0), 5)
+#	draw_line(Vector2(0,0), baum.y*1000, Color(255,255,0), 5)"
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+"player",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 150 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = SubResource( 2 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+
