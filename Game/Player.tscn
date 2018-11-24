@@ -1,15 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/alien_flying01.png" type="Texture" id=2]
+[ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/player_flying02.png" type="Texture" id=3]
+[ext_resource path="res://Sprite.gd" type="Script" id=4]
+[ext_resource path="res://assets/flame/flame01.png" type="Texture" id=5]
+[ext_resource path="res://assets/flame/flame02.png" type="Texture" id=6]
+[ext_resource path="res://assets/flame/flame03.png" type="Texture" id=7]
+[ext_resource path="res://assets/flame/flame04.png" type="Texture" id=8]
+[ext_resource path="res://assets/flame/flame06.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 53.6691
+radius = 86.8815
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "left-flame",
+"speed": 24.0
+} ]
 
 [node name="RigidBody2D" type="RigidBody2D" index="0"]
 
+rotation = 3.14159
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -29,20 +46,55 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 torque = null
 engine_thrust = 300
 left = null
 right = null
 up = null
+energy = null
+bounce_on = false
+bounce_power = null
+cooldown_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Area2D" parent="." index="1" instance=ExtResource( 2 )]
 
-rotation = 3.14159
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform" ]
+editor/display_folded = true
+
+[node name="player_sprite" type="Sprite" parent="." index="2"]
+
+rotation = -3.14159
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
+flame_left_on = false
+flame_right_on = false
+
+[node name="flame_left" type="AnimatedSprite" parent="player_sprite" index="0"]
+
+position = Vector2( -77.9772, 81.791 )
+scale = Vector2( 0.575147, 0.575147 )
+z_index = -1
+frames = SubResource( 2 )
+animation = "left-flame"
+frame = 4
+playing = true
+_sections_unfolded = [ "Pause", "Z Index" ]
+
+[node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
+
+position = Vector2( 76.2599, 83.0961 )
+scale = Vector2( 0.575147, 0.575147 )
+z_index = -1
+frames = SubResource( 2 )
+animation = "left-flame"
+frame = 1
+playing = true
+_sections_unfolded = [ "Z Index" ]
 
 
+[editable path="Area2D"]
