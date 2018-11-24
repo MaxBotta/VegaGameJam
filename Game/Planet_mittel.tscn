@@ -14,7 +14,7 @@ radius = 116.001
 custom_solver_bias = 0.0
 radius = 150.214
 
-[node name="Planet" type="RigidBody2D" index="0"]
+[node name="Planet" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -65,5 +65,7 @@ texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
 
 

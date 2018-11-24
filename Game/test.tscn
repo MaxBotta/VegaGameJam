@@ -3,7 +3,7 @@
 [ext_resource path="res://Planet_klein.tscn" type="PackedScene" id=1]
 [ext_resource path="res://test_objekt.tscn" type="PackedScene" id=2]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 _sections_unfolded = [ "Pause" ]
 

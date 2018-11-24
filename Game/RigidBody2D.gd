@@ -5,6 +5,7 @@ extends RigidBody2D
 # var b = "textvar"
 export (float) var rotation_speed = 5
 #export (float) var scaling = 2
+#export (Vector2) var scale
 
 
 func _ready():

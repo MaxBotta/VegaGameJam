@@ -14,6 +14,7 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("player")):
+		
 		players.push_back(body)
 		
 
@@ -33,3 +34,8 @@ func _physics_process(delta):
 		player.set_applied_force(velocity)
 
 		
+
+
+func _on_Area2D_body_exited(body):
+	players.pop_back(body)
+	
