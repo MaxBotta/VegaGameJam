@@ -6,6 +6,7 @@ var velocity = Vector2()
 var players = []
 var planet_rotation
 var direction
+var gravity_force = 450
 
 func _ready():
 	pass
@@ -13,9 +14,9 @@ func _ready():
 
 
 func _on_Area2D_body_entered(body):
-	print("entered: ", body)
+	
 	if(body.is_in_group("player")):
-		print("is player")
+		
 		#body.linear_velocity = Vector2()
 		body.bounce = false
 		players.push_back(body)
@@ -32,15 +33,16 @@ func _physics_process(delta):
 		var to_rotate = baum.x.dot(direction) 
 #		to_rotate = clamp(to_rotate, 0, 0.005)
 		player.rotate(to_rotate)
-
-		velocity = direction * 300
+		var applied_force = player.get_applied_force()
+		velocity = (direction * gravity_force) + applied_force
+		print(velocity)
 		player.set_applied_force(velocity)
 
 		
 
 
 func _on_Area2D_body_exited(body):
-	print("left: ", body)
+	
 	if(body.is_in_group("player")):
 		#body.bounce_on = true
 		var erg = players.find(body)

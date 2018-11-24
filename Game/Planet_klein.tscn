@@ -12,7 +12,7 @@ radius = 76.7913
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 187.301
+radius = 199.055
 
 [node name="Planet" type="RigidBody2D"]
 
@@ -36,7 +36,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
-rotation_speed = 5
+rotation_speed = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
