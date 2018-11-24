@@ -17,6 +17,7 @@ var rotation_dir = 0
 var thrust = Vector2()
 var explosion_timer = 0
 var sprite
+var is_running = false
 
 var controls = { 
 	up = KEY_UP, 
@@ -53,10 +54,14 @@ func _integrate_forces(state):
 	if Input.is_key_pressed(controls[right]):
 		sprite.left_flame(true)
 		rotation_dir += 1
+		if is_running:
+			$running_sprite.flip_h = false
 	#Left
 	if Input.is_key_pressed(controls[left]):
 		sprite.right_flame(true)
 		rotation_dir -= 1
+		if is_running:
+			$running_sprite.flip_h = true
 	
 	
 	set_applied_torque(rotation_dir * torque); 
@@ -78,6 +83,7 @@ func do_running():
 	if (!Input.is_key_pressed(controls[up]) and !Input.is_key_pressed(controls[left]) and !Input.is_key_pressed(controls[right])):
 		$running_sprite.visible = true
 		$player_sprite.visible = false
+		is_running = true
 		
 func do_jetting():
 	$running_sprite.visible = false

@@ -1,4 +1,4 @@
-extends Sprite
+extends AnimatedSprite
 
 export (bool) var flame_left_on = false
 export (bool) var flame_right_on = false

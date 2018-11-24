@@ -1,33 +1,45 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/player_flying02.png" type="Texture" id=3]
-[ext_resource path="res://Sprite.gd" type="Script" id=4]
-[ext_resource path="res://assets/flame/flame01.png" type="Texture" id=5]
-[ext_resource path="res://assets/flame/flame02.png" type="Texture" id=6]
-[ext_resource path="res://assets/flame/flame03.png" type="Texture" id=7]
-[ext_resource path="res://assets/flame/flame04.png" type="Texture" id=8]
-[ext_resource path="res://assets/flame/flame06.png" type="Texture" id=9]
-[ext_resource path="res://assets/running/1.png" type="Texture" id=10]
-[ext_resource path="res://assets/running/2.png" type="Texture" id=11]
-[ext_resource path="res://assets/running/3.png" type="Texture" id=12]
-[ext_resource path="res://assets/running/4.png" type="Texture" id=13]
-[ext_resource path="res://assets/running/5.png" type="Texture" id=14]
-[ext_resource path="res://assets/running/6.png" type="Texture" id=15]
-[ext_resource path="res://assets/running/7.png" type="Texture" id=16]
-[ext_resource path="res://assets/running/8.png" type="Texture" id=17]
-[ext_resource path="res://assets/running/9.png" type="Texture" id=18]
+[ext_resource path="res://assets/flying/0.png" type="Texture" id=3]
+[ext_resource path="res://assets/flying/1.png" type="Texture" id=4]
+[ext_resource path="res://assets/flying/2.png" type="Texture" id=5]
+[ext_resource path="res://assets/flying/3.png" type="Texture" id=6]
+[ext_resource path="res://Sprite.gd" type="Script" id=7]
+[ext_resource path="res://assets/flame/flame01.png" type="Texture" id=8]
+[ext_resource path="res://assets/flame/flame02.png" type="Texture" id=9]
+[ext_resource path="res://assets/flame/flame03.png" type="Texture" id=10]
+[ext_resource path="res://assets/flame/flame04.png" type="Texture" id=11]
+[ext_resource path="res://assets/flame/flame06.png" type="Texture" id=12]
+[ext_resource path="res://assets/running/1.png" type="Texture" id=13]
+[ext_resource path="res://assets/running/2.png" type="Texture" id=14]
+[ext_resource path="res://assets/running/3.png" type="Texture" id=15]
+[ext_resource path="res://assets/running/4.png" type="Texture" id=16]
+[ext_resource path="res://assets/running/5.png" type="Texture" id=17]
+[ext_resource path="res://assets/running/6.png" type="Texture" id=18]
+[ext_resource path="res://assets/running/7.png" type="Texture" id=19]
+[ext_resource path="res://assets/running/8.png" type="Texture" id=20]
+[ext_resource path="res://assets/running/9.png" type="Texture" id=21]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 13.8297
+radius = 36.6864
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
 
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "left-flame",
 "speed": 24.0
@@ -36,7 +48,7 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "default",
 "speed": 24.0
@@ -68,7 +80,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-torque = 800
+torque = 2500
 engine_thrust = 600
 left = null
 right = null
@@ -84,47 +96,50 @@ shape = SubResource( 1 )
 
 [node name="Area2D" parent="." index="1" instance=ExtResource( 2 )]
 
-[node name="player_sprite" type="Sprite" parent="." index="2"]
+[node name="player_sprite" type="AnimatedSprite" parent="." index="2"]
 
 rotation = -3.14159
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 3 )
-script = ExtResource( 4 )
+frames = SubResource( 4 )
+animation = "default"
+frame = 2
+playing = true
+script = ExtResource( 7 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 flame_left_on = false
 flame_right_on = false
 
 [node name="flame_left" type="AnimatedSprite" parent="player_sprite" index="0"]
 
-position = Vector2( -77.9772, 81.791 )
+position = Vector2( -70.4649, 210.574 )
 scale = Vector2( 0.575147, 0.575147 )
 z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
-frame = 4
+frame = 5
 playing = true
 _sections_unfolded = [ "Pause", "Z Index" ]
 
 [node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
 
-position = Vector2( 76.2599, 83.0961 )
+position = Vector2( 78.4063, 210.806 )
 scale = Vector2( 0.575147, 0.575147 )
 z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
-frame = 1
+frame = 2
 playing = true
 _sections_unfolded = [ "Z Index" ]
 
 [node name="running_sprite" type="AnimatedSprite" parent="." index="3"]
 
 visible = false
-position = Vector2( -0.64399, 11.5905 )
+position = Vector2( -0.29599, -9.51828 )
 rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 1
+frame = 5
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 
