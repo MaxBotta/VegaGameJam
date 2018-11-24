@@ -5,10 +5,10 @@ var bounce_on = false
 var parent
 var direction
 var collision_shape
-var scale_factor = 1.16
+export (float) var scale_factor = 1.16
 var bodies_in_field = []
 var explosion_timer = 0
-var explosion_duration = 0.34
+export (float) var explosion_duration = 0.34
 var is_exploding = false
 
 func _ready():
@@ -35,13 +35,10 @@ func explosion(delta):
 	
 	if explosion_timer > 0:
 		for item in bodies_in_field:
-			print("bounceeee")
 			direction = (item.get_global_transform().get_origin() - self.get_global_transform().get_origin()).normalized() * bounce_power
-			print(direction)
 			item.apply_impulse(Vector2(0,0), direction)
 		
 		explosion_timer -= delta
-		print(explosion_timer)
 		var scale = collision_shape.get_scale()
 		collision_shape.set_scale(scale * scale_factor)
 	else:

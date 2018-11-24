@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 86.8815
+radius = 52.9018
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -60,38 +60,45 @@ cooldown_time = null
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" parent="." index="1" instance=ExtResource( 2 )]
 
+scale = Vector2( 0.5, 0.5 )
+scale_factor = 1.05
+explosion_duration = 5.0
+
 [node name="player_sprite" type="Sprite" parent="." index="2"]
 
+editor/display_folded = true
 rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
-flame_left_on = false
-flame_right_on = false
+flame_left_on = true
+flame_right_on = true
 
 [node name="flame_left" type="AnimatedSprite" parent="player_sprite" index="0"]
 
+show_behind_parent = true
 position = Vector2( -77.9772, 81.791 )
 scale = Vector2( 0.575147, 0.575147 )
-z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
-frame = 3
+frame = 5
 playing = true
-_sections_unfolded = [ "Pause", "Z Index" ]
+_sections_unfolded = [ "Pause", "Visibility", "Z Index" ]
 
 [node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
 
+show_behind_parent = true
 position = Vector2( 76.2599, 83.0961 )
 scale = Vector2( 0.575147, 0.575147 )
-z_index = -1
 frames = SubResource( 2 )
 animation = "left-flame"
 playing = true
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 
 [editable path="Area2D"]
