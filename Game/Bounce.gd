@@ -15,7 +15,7 @@ func _ready():
 	parent = get_parent()
 	bounce_power = parent.get("bounce_power")
 	collision_shape = get_child(0)
-	print(parent)
+	
 	
 func _process(delta):
 	if parent.get("bounce_on"):
@@ -24,12 +24,16 @@ func _process(delta):
 	explosion(delta)
 		
 func _on_Area2D_body_entered(body):
-	bodies_in_field.push_back(body)
-	print(body.name)
+	if(body.is_in_group("player")):
+		bodies_in_field.push_back(body)
+		
 	
 func _on_Area2D_body_exited(body):
-	bodies_in_field.erase(body)
+	if(body.is_in_group("player")):
+		bodies_in_field.erase(body)
 	
+func _on_Area2D_area_shape_exited(shape, a, b, c):
+	pass
 	
 func explosion(delta):
 	

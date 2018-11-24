@@ -30,7 +30,7 @@ var controls = {
 	}
 
 func _ready():
-	self
+	
 	screen_size = get_viewport().get_visible_rect().size
 	thrust = Vector2(0, engine_thrust)
 	sprite = get_node("player_sprite")
@@ -62,7 +62,6 @@ func _process(delta):
 	check_explosion(delta)
 
 func check_explosion(delta):
-	print(explosion_timer)
 	if explosion_timer <= 0:
 		if Input.is_key_pressed(controls[energy]):
 			bounce_on = true

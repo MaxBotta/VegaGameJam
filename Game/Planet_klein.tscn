@@ -7,12 +7,12 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 79.2365
+radius = 76.7913
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 124.599
+radius = 187.301
 
 [node name="Planet" type="RigidBody2D"]
 
