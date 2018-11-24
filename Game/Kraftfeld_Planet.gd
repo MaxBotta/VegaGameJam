@@ -37,5 +37,8 @@ func _physics_process(delta):
 
 
 func _on_Area2D_body_exited(body):
-	players.pop_back(body)
+	var erg = players.find(body)
+	if(erg != -1):
+		players.remove(erg)
+		
 	

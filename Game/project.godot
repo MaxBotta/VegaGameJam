@@ -11,23 +11,14 @@ config_version=3
 [application]
 
 config/name="Neues Spiel"
-<<<<<<< HEAD
-run/main_scene="res://Game.tscn"
-=======
 run/main_scene="res://test.tscn"
->>>>>>> tobi
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-<<<<<<< HEAD
-window/stretch/aspect="keep"
-=======
->>>>>>> tobi
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

@@ -7,6 +7,7 @@
 
 [node name="background" type="Sprite" parent="." index="0"]
 
+visible = false
 position = Vector2( 692.365, 544.488 )
 scale = Vector2( 3.42172, 3.42172 )
 texture = ExtResource( 1 )
