@@ -39,25 +39,22 @@ func _integrate_forces(state):
 	rotation_dir = 0
 	#Forward
 	if Input.is_key_pressed(controls[up]):
-		sprite.flame_left_on = true
-		sprite.flame_right_on = true
+		sprite.left_flame(true)
+		sprite.right_flame(true)
 		set_applied_force(thrust.rotated(rotation))
 	else:
-		sprite.flame_left_on = false
-		sprite.flame_right_on = false
+		sprite.left_flame(false)
+		sprite.right_flame(false)
 		set_applied_force(Vector2())
 	#Right
 	if Input.is_key_pressed(controls[right]):
-		sprite.flame_left_on = true
+		sprite.left_flame(true)
 		rotation_dir += 1
-	else:
-		sprite.flame_left_on = false
 	#Left
 	if Input.is_key_pressed(controls[left]):
-		sprite.flame_right_on = true
+		sprite.right_flame(true)
 		rotation_dir -= 1
-	else:
-		sprite.flame_right_on = true
+	
 	
 	set_applied_torque(rotation_dir * torque); 
 	
