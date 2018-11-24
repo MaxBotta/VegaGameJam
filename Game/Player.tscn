@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
@@ -12,22 +12,29 @@
 [ext_resource path="res://assets/flame/flame03.png" type="Texture" id=10]
 [ext_resource path="res://assets/flame/flame04.png" type="Texture" id=11]
 [ext_resource path="res://assets/flame/flame06.png" type="Texture" id=12]
-[ext_resource path="res://assets/running/1.png" type="Texture" id=13]
-[ext_resource path="res://assets/running/2.png" type="Texture" id=14]
-[ext_resource path="res://assets/running/3.png" type="Texture" id=15]
-[ext_resource path="res://assets/running/4.png" type="Texture" id=16]
-[ext_resource path="res://assets/running/5.png" type="Texture" id=17]
-[ext_resource path="res://assets/running/6.png" type="Texture" id=18]
-[ext_resource path="res://assets/running/7.png" type="Texture" id=19]
-[ext_resource path="res://assets/running/8.png" type="Texture" id=20]
-[ext_resource path="res://assets/running/9.png" type="Texture" id=21]
+[ext_resource path="res://assets/cropped2/001.png" type="Texture" id=13]
+[ext_resource path="res://assets/cropped2/002.png" type="Texture" id=14]
+[ext_resource path="res://assets/cropped2/003.png" type="Texture" id=15]
+[ext_resource path="res://assets/cropped2/004.png" type="Texture" id=16]
+[ext_resource path="res://assets/cropped2/005.png" type="Texture" id=17]
+[ext_resource path="res://assets/cropped2/006.png" type="Texture" id=18]
+[ext_resource path="res://assets/cropped2/007.png" type="Texture" id=19]
+[ext_resource path="res://assets/running/1.png" type="Texture" id=20]
+[ext_resource path="res://assets/running/2.png" type="Texture" id=21]
+[ext_resource path="res://assets/running/3.png" type="Texture" id=22]
+[ext_resource path="res://assets/running/4.png" type="Texture" id=23]
+[ext_resource path="res://assets/running/5.png" type="Texture" id=24]
+[ext_resource path="res://assets/running/6.png" type="Texture" id=25]
+[ext_resource path="res://assets/running/7.png" type="Texture" id=26]
+[ext_resource path="res://assets/running/8.png" type="Texture" id=27]
+[ext_resource path="res://assets/running/9.png" type="Texture" id=28]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 36.6864
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -36,7 +43,7 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 12 ) ],
@@ -45,17 +52,26 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "death",
+"speed": 16.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "default",
 "speed": 24.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+[node name="RigidBody2D" type="RigidBody2D" groups=[
 "player",
 ]]
 
@@ -80,7 +96,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-torque = 2500
+torque = 4000
 engine_thrust = 600
 left = null
 right = null
@@ -100,9 +116,8 @@ shape = SubResource( 1 )
 
 rotation = -3.14159
 scale = Vector2( 0.2, 0.2 )
-frames = SubResource( 4 )
+frames = SubResource( 2 )
 animation = "default"
-frame = 2
 playing = true
 script = ExtResource( 7 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
@@ -111,37 +126,49 @@ flame_right_on = false
 
 [node name="flame_left" type="AnimatedSprite" parent="player_sprite" index="0"]
 
-position = Vector2( -70.4649, 210.574 )
+show_behind_parent = true
+position = Vector2( -70.4649, 215.574 )
 scale = Vector2( 0.575147, 0.575147 )
-z_index = -1
-frames = SubResource( 2 )
-animation = "left-flame"
-frame = 5
-playing = true
-_sections_unfolded = [ "Pause", "Z Index" ]
-
-[node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
-
-position = Vector2( 78.4063, 210.806 )
-scale = Vector2( 0.575147, 0.575147 )
-z_index = -1
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "left-flame"
 frame = 2
 playing = true
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Pause", "Visibility", "Z Index" ]
 
-[node name="running_sprite" type="AnimatedSprite" parent="." index="3"]
+[node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
+
+show_behind_parent = true
+position = Vector2( 77.6943, 215.806 )
+scale = Vector2( 0.575147, 0.575147 )
+frames = SubResource( 3 )
+animation = "left-flame"
+frame = 5
+playing = true
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="death" type="AnimatedSprite" parent="." index="3"]
+
+visible = false
+rotation = -3.14159
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 5 )
+animation = "death"
+frame = 6
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="running_sprite" type="AnimatedSprite" parent="." index="4"]
 
 visible = false
 position = Vector2( -0.29599, -9.51828 )
 rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "default"
-frame = 5
+frame = 8
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
+
+[connection signal="animation_finished" from="death" to="player_sprite" method="_on_death_animation_finished"]
 
 
 [editable path="Area2D"]

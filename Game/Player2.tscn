@@ -1,0 +1,132 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Bounce.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/player_flying02.png" type="Texture" id=3]
+[ext_resource path="res://Sprite.gd" type="Script" id=4]
+[ext_resource path="res://assets/flame/flame01.png" type="Texture" id=5]
+[ext_resource path="res://assets/flame/flame02.png" type="Texture" id=6]
+[ext_resource path="res://assets/flame/flame03.png" type="Texture" id=7]
+[ext_resource path="res://assets/flame/flame04.png" type="Texture" id=8]
+[ext_resource path="res://assets/flame/flame06.png" type="Texture" id=9]
+[ext_resource path="res://assets/cropped2/001.png" type="Texture" id=10]
+[ext_resource path="res://assets/cropped2/002.png" type="Texture" id=11]
+[ext_resource path="res://assets/cropped2/003.png" type="Texture" id=12]
+[ext_resource path="res://assets/cropped2/004.png" type="Texture" id=13]
+[ext_resource path="res://assets/cropped2/005.png" type="Texture" id=14]
+[ext_resource path="res://assets/cropped2/006.png" type="Texture" id=15]
+[ext_resource path="res://assets/cropped2/007.png" type="Texture" id=16]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 52.9018
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "left-flame",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "death",
+"speed": 16.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+rotation = 3.14159
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 0.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 2
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+torque = null
+engine_thrust = 300
+left = null
+right = null
+up = null
+energy = null
+bounce_on = false
+bounce_power = null
+cooldown_time = -2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" parent="." index="1" instance=ExtResource( 2 )]
+
+scale = Vector2( 0.5, 0.5 )
+scale_factor = 1.05
+explosion_duration = 5.0
+
+[node name="player_sprite" type="Sprite" parent="." index="2"]
+
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
+flame_left_on = true
+flame_right_on = true
+
+[node name="flame_left" type="AnimatedSprite" parent="player_sprite" index="0"]
+
+show_behind_parent = true
+position = Vector2( -77.9772, 81.791 )
+scale = Vector2( 0.575147, 0.575147 )
+frames = SubResource( 2 )
+animation = "left-flame"
+playing = true
+_sections_unfolded = [ "Pause", "Visibility", "Z Index" ]
+
+[node name="flame_right" type="AnimatedSprite" parent="player_sprite" index="1"]
+
+show_behind_parent = true
+position = Vector2( 76.2599, 83.0961 )
+scale = Vector2( 0.575147, 0.575147 )
+frames = SubResource( 2 )
+animation = "left-flame"
+frame = 1
+playing = true
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="death" type="AnimatedSprite" parent="." index="3"]
+
+visible = false
+rotation = -3.14159
+scale = Vector2( 0.65, 0.65 )
+frames = SubResource( 3 )
+animation = "death"
+frame = 6
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[connection signal="animation_finished" from="death" to="player_sprite" method="_on_death_animation_finished"]
+
+
+[editable path="Area2D"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Kraftfeld_Planet.gd" type="Script" id=2]
-[ext_resource path="res://INGAME_PLANET_BASES_8.png" type="Texture" id=3]
+[ext_resource path="res://assets/planet/planet01.png" type="Texture" id=3]
+[ext_resource path="res://assets/planet/planet field.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -66,7 +67,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.22, 0.22 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
@@ -83,6 +84,12 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" index="0"]
 
 shape = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="." index="4"]
+
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 

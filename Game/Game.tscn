@@ -1,40 +1,51 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/background2.png" type="Texture" id=1]
+[ext_resource path="res://assets/background_image.jpg" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Planet_klein.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Planet_gross.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Planet_mittel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LaserCorner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Laser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Area2D2.gd" type="Script" id=8]
+[ext_resource path="res://Menu.tscn" type="PackedScene" id=9]
 
-[node name="Node" type="Node"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 891.566, 471.737 )
+
+[node name="Node" type="Node" index="0"]
 
 [node name="background" type="Sprite" parent="." index="0"]
 
-visible = false
-position = Vector2( 692.365, 544.488 )
-scale = Vector2( 3.42172, 3.42172 )
+position = Vector2( 963.387, 542.173 )
+scale = Vector2( 0.503001, 0.503001 )
 texture = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="RigidBody2D" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 860.985, 576.698 )
 bounce = 1.0
+torque = 6000
 left = "a"
 right = "d"
 up = "w"
 energy = "space"
-bounce_power = 50
+bounce_power = 100
 cooldown_time = 4
 
 [node name="RigidBody2D2" parent="." index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 1193.1, 345.658 )
 bounce = 1.0
+torque = 6000
 left = "left"
 right = "right"
 up = "up"
 energy = "p"
-bounce_power = 50
+bounce_power = 100
 cooldown_time = 4
 
 [node name="Planet" parent="." index="3" instance=ExtResource( 3 )]
@@ -49,5 +60,77 @@ position = Vector2( 1302.09, 727.944 )
 
 position = Vector2( 789.46, 297.329 )
 rotation_speed = -1.5
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Area2D" parent="Area2D" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 1882.34, 37.1861 )
+
+[node name="Area2D2" parent="Area2D" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 1882.34, 1040.5 )
+rotation = 1.5708
+
+[node name="Area2D3" parent="Area2D" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 39.3923, 1040.42 )
+rotation = 3.14159
+
+[node name="Area2D4" parent="Area2D" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 39.4734, 37.1861 )
+rotation = 4.71239
+
+[node name="Area2D5" parent="Area2D" index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 1885.48, 538.655 )
+scale = Vector2( 0.5, 5.00458 )
+
+[node name="Area2D6" parent="Area2D" index="5" instance=ExtResource( 7 )]
+
+position = Vector2( 36.7114, 538.655 )
+scale = Vector2( 0.5, 5.00458 )
+
+[node name="Area2D7" parent="Area2D" index="6" instance=ExtResource( 7 )]
+
+position = Vector2( 960.957, 34.2599 )
+rotation = 1.5708
+scale = Vector2( 0.5, 9.42117 )
+
+[node name="Area2D8" parent="Area2D" index="7" instance=ExtResource( 7 )]
+
+position = Vector2( 960.957, 1042.85 )
+rotation = 1.5708
+scale = Vector2( 0.5, 9.42117 )
+
+[node name="Area2D2" type="Area2D" parent="." index="7"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" index="0"]
+
+position = Vector2( 962.276, 537.671 )
+scale = Vector2( 1, 1.00674 )
+shape = SubResource( 1 )
+
+[node name="Area2D3" parent="." index="8" instance=ExtResource( 9 )]
+
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_Area2D2_body_exited"]
 
 
