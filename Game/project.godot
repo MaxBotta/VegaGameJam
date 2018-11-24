@@ -11,7 +11,13 @@ config_version=3
 [application]
 
 config/name="Neues Spiel"
+run/main_scene="res://test.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [rendering]
 

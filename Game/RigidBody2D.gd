@@ -3,15 +3,17 @@ extends RigidBody2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+export (float) var rotation_speed = 5
+#export (float) var scaling = 2
 
-export (int) var rotation_speed = 100
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	
+	#get_node("CollisionShape2D").get_transform().scaled(Vector2(scaling, scaling))
+	#get_node("Area2D/CollisionShape2D").get_transform().scaled(Vector2(scaling, scaling))
+	#get_node("Sprite").get_transform().scaled(Vector2(scaling*0.2, scaling*0.2))
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	self.rotation += rotation_speed * delta
+

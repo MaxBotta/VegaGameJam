@@ -7,12 +7,12 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 77.0859
+radius = 116.001
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 124.599
+radius = 150.214
 
 [node name="Planet" type="RigidBody2D" index="0"]
 
@@ -60,7 +60,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
